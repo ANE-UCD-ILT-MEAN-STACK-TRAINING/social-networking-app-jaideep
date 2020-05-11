@@ -15,6 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header/header.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,14 +26,15 @@ import { PostListComponent } from './posts/post-list/post-list.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    AppRoutingModule,
-    MatInputModule,
+    FormsModule, 
+    AppRoutingModule, 
+    BrowserAnimationsModule, 
+    MatInputModule, 
+    MatButtonModule,
     MatCardModule,
-    MatInputModule,
     MatToolbarModule,
     MatExpansionModule,
-    BrowserAnimationsModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
