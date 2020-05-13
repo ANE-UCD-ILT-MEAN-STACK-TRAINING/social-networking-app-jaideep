@@ -1,11 +1,10 @@
-const express = require("express");
-const app = express();
+const express = require('express');
+const Post = require('../models/post');
+const router = express.Router();
 const bodyParser = require("body-parser");
-const Post = require("./models/post");
 const mongoose = require("mongoose");
-const postRoutes = require('./routes/posts');
 
-/*mongoose
+mongoose
     .connect(
         "mongodb://localhost:27017/MyPosts?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false"
     )
@@ -16,10 +15,10 @@ const postRoutes = require('./routes/posts');
         console.log("Connection failed!");
     });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }))
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({ extended: false }))
 
-app.use((req, res, next) => {
+router.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
         "Access-Control-Allow-Headers",
@@ -32,7 +31,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get("/api/posts", (req, res, next) => {
+router.get("/api/posts", (req, res, next) => {
     Post.find().then((documents) => {
         res.status(200).json({
             message: "Posts fetched successfully!",
@@ -42,7 +41,7 @@ app.get("/api/posts", (req, res, next) => {
 });
 
 
-app.post("/api/posts", (req, res, next) => {
+router.post("/api/posts", (req, res, next) => {
     const post = new Post({
         title: req.body.title,
         content: req.body.content,
@@ -56,7 +55,7 @@ app.post("/api/posts", (req, res, next) => {
     });
 });
 
-app.delete("/api/posts/:id", (req, res, next) => {
+router.delete("/api/posts/:id", (req, res, next) => {
     Post.deleteOne({ _id: req.params.id }).then((result) => {
         console.log(result);
         res.status(200).json({ message: "Post deleted!" });
@@ -64,7 +63,7 @@ app.delete("/api/posts/:id", (req, res, next) => {
 });
 
 
-app.put('/api/posts/:id', (req, res, next) => {
+router.put('/api/posts/:id', (req, res, next) => {
     const post = new Post({
         _id: req.body.id,
         title: req.body.title,
@@ -80,7 +79,7 @@ app.put('/api/posts/:id', (req, res, next) => {
         });
 });
 
-app.get('/api/posts/:id', (req, res, next) => {
+router.get('/api/posts/:id', (req, res, next) => {
     Post.findById(req.params.id)
         .then(post => {
             if (post) {
@@ -92,9 +91,7 @@ app.get('/api/posts/:id', (req, res, next) => {
             }
 
         });
-});*/
-
-app.use(postRoutes);
+});
 
 
-module.exports = app;
+module.exports = router;
