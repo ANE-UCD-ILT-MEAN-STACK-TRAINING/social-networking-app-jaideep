@@ -1,10 +1,5 @@
-mat-card {
-  width: 80%;
-  margin: auto;
-}
-
 mat-form-field,
-textarea{
+textarea {
   width: 100%;
 }
 
@@ -12,14 +7,19 @@ mat-spinner {
   margin: auto;
 }
 
+mat-paginator {
+  margin-top: 1rem;
+}
+
 input[type="file"] {
   visibility: hidden;
 }
 
 .image-preview {
-  height : 5rem;
+  height: 5rem;
   margin: 1rem 0;
 }
+
 .image-preview img {
   height: 100%;
 }
